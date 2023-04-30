@@ -56,6 +56,7 @@ public class Grizz {
     float turn = 0.5f;
     private boolean hadapKanan = false;
     private boolean angkatTangan = false;
+    private boolean clicked = false;
 
     public void init() {
         // memanggil function untuk dipakai
@@ -781,6 +782,7 @@ public class Grizz {
             Vector3f tmp2 = listSphere.get(0).getChildObject().get(5).updateCenterPoint();
             Vector3f tmpTanganKiri = listSphere.get(0).getChildObject().get(8).updateCenterPoint();
             Vector3f tmpTanganKanan = listSphere.get(0).getChildObject().get(7).updateCenterPoint();
+
             if (this.degKaki < 45 && checkKaki) {
                 listSphere.get(0).getChildObject().get(5).translateObject(tmp2.x * -1, tmp2.y * -1, tmp2.z * -1);
                 listSphere.get(0).getChildObject().get(5).rotateObject((float) Math.toRadians(-1), 0.0f, 0.0f, 1.0f);
@@ -824,50 +826,52 @@ public class Grizz {
             }
 
 
-            if (this.degTanganKiri < 60 && checkTanganKiri) {
-                listSphere.get(0).getChildObject().get(3).translateObject(tmpTanganKiri.x * -1, tmpTanganKiri.y * -1, tmpTanganKiri.z * -1);
-                listSphere.get(0).getChildObject().get(3).rotateObject((float) Math.toRadians(-0.5), .0f, 0.0f, 1.0f);
-                listSphere.get(0).getChildObject().get(3).translateObject(tmpTanganKiri.x, tmpTanganKiri.y, tmpTanganKiri.z);
-                this.degTanganKiri++;
-            }
-            if (this.degTanganKiri > -60 && !checkTanganKiri) {
-                listSphere.get(0).getChildObject().get(3).translateObject(tmpTanganKiri.x * -1, tmpTanganKiri.y * -1, tmpTanganKiri.z * -1);
-                listSphere.get(0).getChildObject().get(3).rotateObject((float) Math.toRadians(0.5), 0.0f, 0.0f, 1.0f);
-                listSphere.get(0).getChildObject().get(3).translateObject(tmpTanganKiri.x, tmpTanganKiri.y, tmpTanganKiri.z);
-                this.degTanganKiri--;
-            }
-            if (this.degTanganKiri >= 60) {
-                this.degTanganKiri = 60;
-                this.checkTanganKiri = false;
-            }
-            if (this.degTanganKiri <= -60) {
-                this.degTanganKiri = -60;
-                this.checkTanganKiri = true;
-            }
+//            if (this.degTanganKiri < 60 && checkTanganKiri) {
+//                listSphere.get(0).getChildObject().get(3).translateObject(tmpTanganKiri.x * -1, tmpTanganKiri.y * -1, tmpTanganKiri.z * -1);
+//                listSphere.get(0).getChildObject().get(3).rotateObject((float) Math.toRadians(-0.5), 0.0f, 0.0f, 1.0f);
+//                listSphere.get(0).getChildObject().get(3).translateObject(tmpTanganKiri.x, tmpTanganKiri.y, tmpTanganKiri.z);
+//                this.degTanganKiri++;
+//            }
+//            if (this.degTanganKiri > -60 && !checkTanganKiri) {
+//                listSphere.get(0).getChildObject().get(3).translateObject(tmpTanganKiri.x * -1, tmpTanganKiri.y * -1, tmpTanganKiri.z * -1);
+//                listSphere.get(0).getChildObject().get(3).rotateObject((float) Math.toRadians(0.5), 0.0f, 0.0f, 1.0f);
+//                listSphere.get(0).getChildObject().get(3).translateObject(tmpTanganKiri.x, tmpTanganKiri.y, tmpTanganKiri.z);
+//                this.degTanganKiri--;
+//            }
+//            if (this.degTanganKiri >= 60) {
+//                this.degTanganKiri = 60;
+//                this.checkTanganKiri = false;
+//            }
+//            if (this.degTanganKiri <= -60) {
+//                this.degTanganKiri = -60;
+//                this.checkTanganKiri = true;
+//            }
 
-            if (this.degTanganKanan < 60 && checkTanganKanan) {
-                listSphere.get(0).getChildObject().get(2).translateObject(tmpTanganKanan.x * -1, tmpTanganKanan.y * -1, tmpTanganKanan.z * -1);
-                listSphere.get(0).getChildObject().get(2).rotateObject((float) Math.toRadians(0.5), .0f, 0.0f, 1.0f);
-                listSphere.get(0).getChildObject().get(2).translateObject(tmpTanganKanan.x, tmpTanganKanan.y, tmpTanganKanan.z);
-                this.degTanganKanan++;
-            }
-            if (this.degTanganKanan > -60 && !checkTanganKanan) {
-                listSphere.get(0).getChildObject().get(2).translateObject(tmpTanganKanan.x * -1, tmpTanganKanan.y * -1, tmpTanganKanan.z * -1);
-                listSphere.get(0).getChildObject().get(2).rotateObject((float) Math.toRadians(-0.5), 0.0f, 0.0f, 1.0f);
-                listSphere.get(0).getChildObject().get(2).translateObject(tmpTanganKanan.x, tmpTanganKanan.y, tmpTanganKanan.z);
-                this.degTanganKanan--;
-            }
-            if (this.degTanganKanan >= 60) {
-                this.degTanganKanan = 60;
-                this.checkTanganKanan = false;
-            }
-            if (this.degTanganKanan <= -60) {
-                this.degTanganKanan = -60;
-                this.checkTanganKanan = true;
-            }
+//            if (this.degTanganKanan < 60 && checkTanganKanan) {
+//                listSphere.get(0).getChildObject().get(2).translateObject(tmpTanganKanan.x * -1, tmpTanganKanan.y * -1, tmpTanganKanan.z * -1);
+//                listSphere.get(0).getChildObject().get(2).rotateObject((float) Math.toRadians(0.5), .0f, 0.0f, 1.0f);
+//                listSphere.get(0).getChildObject().get(2).translateObject(tmpTanganKanan.x, tmpTanganKanan.y, tmpTanganKanan.z);
+//                this.degTanganKanan++;
+//            }
+//            if (this.degTanganKanan > -60 && !checkTanganKanan) {
+//                listSphere.get(0).getChildObject().get(2).translateObject(tmpTanganKanan.x * -1, tmpTanganKanan.y * -1, tmpTanganKanan.z * -1);
+//                listSphere.get(0).getChildObject().get(2).rotateObject((float) Math.toRadians(-0.5), 0.0f, 0.0f, 1.0f);
+//                listSphere.get(0).getChildObject().get(2).translateObject(tmpTanganKanan.x, tmpTanganKanan.y, tmpTanganKanan.z);
+//                this.degTanganKanan--;
+//            }
+//            if (this.degTanganKanan >= 60) {
+//                this.degTanganKanan = 60;
+//                this.checkTanganKanan = false;
+//            }
+//            if (this.degTanganKanan <= -60) {
+//                this.degTanganKanan = -60;
+//                this.checkTanganKanan = true;
+//            }
             
 
             if (modeDuduk) {
+                System.out.println("deg tangan kiri" + degTanganKiri);
+                System.out.println("deg tangan kanan" + degTanganKanan);
                 tmpTanganKiri = listSphere.get(0).getChildObject().get(8).updateCenterPoint();
                 if (this.degTanganKiri < 240 && checkTanganKiri) {
                     listSphere.get(0).getChildObject().get(3).translateObject(tmpTanganKiri.x * -1, tmpTanganKiri.y * -1, tmpTanganKiri.z * -1);
@@ -1026,6 +1030,30 @@ public class Grizz {
         }
     }
 
+    public void putar(){
+        if(!clicked){
+            if(hadapKanan) {
+                Vector3f tmp = listSphere.get(0).updateCenterPoint();
+                listSphere.get(0).translateObject(tmp.x * -1, tmp.y * -1, tmp.z * -1);
+                listSphere.get(0).rotateObject((float) Math.toRadians(180f), 0.0f, 1.0f, 0.0f);
+                listSphere.get(0).translateObject(tmp.x, tmp.y, tmp.z);
+                hadapKiri = true;
+                hadapKanan = false;
+                hadapDepan = false;
+            } else if (hadapKiri) {
+                Vector3f tmp = listSphere.get(0).updateCenterPoint();
+                listSphere.get(0).translateObject(tmp.x * -1, tmp.y * -1, tmp.z * -1);
+                listSphere.get(0).rotateObject((float) Math.toRadians(-180f), 0.0f, 1.0f, 0.0f);
+                listSphere.get(0).translateObject(tmp.x, tmp.y, tmp.z);
+                hadapKiri = false;
+                hadapKanan =true;
+                hadapDepan = false;
+            }
+            clicked = true;
+        }
+
+    }
+
     public void hadapKiri(){
         if(!hadapKiri) {
             Vector3f tmp = listSphere.get(0).updateCenterPoint();
@@ -1037,13 +1065,12 @@ public class Grizz {
         }
     }
 
-    public void modeJalan(){
+    public boolean modeJalan(){
         Vector3f tmp = listSphere.get(0).getChildObject().get(6).updateCenterPoint();
         Vector3f tmpTangan = listSphere.get(0).getChildObject().get(7).updateCenterPoint();
         Vector3f tmpKepala = listSphere.get(0).getChildObject().get(1).updateCenterPoint();
         Vector3f tmpTangan2 = listSphere.get(0).getChildObject().get(8).updateCenterPoint();
         if (!this.hadapKanan){
-
             if (this.deg < 120) {
                 listSphere.get(0).getChildObject().get(1).translateObject(tmpKepala.x * -1, tmpKepala.y * -1, tmpKepala.z * -1);
                 listSphere.get(0).getChildObject().get(1).rotateObject((float) Math.toRadians(-0.75), 1.0f, 0.0f, 0.0f);
@@ -1079,6 +1106,7 @@ public class Grizz {
 
             if (this.deg >= 120 && this.counterLean >= 180 && this.degTanganKanan >= 180 && this.degTanganKiri >= 180) {
                 this.modeDuduk = true;
+                return true;
             }
         }else{
             tmp = listSphere.get(0).getChildObject().get(6).updateCenterPoint();
@@ -1120,9 +1148,10 @@ public class Grizz {
 
             if (this.deg >= 120 && this.counterLean >= 180 && this.degTanganKanan >= 180 && this.degTanganKiri >= 180) {
                 this.modeDuduk = true;
+                return true;
             }
         }
-
+        return false;
     }
 
     public void rotateSemua(){

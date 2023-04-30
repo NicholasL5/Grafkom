@@ -1,5 +1,6 @@
 package Gwan;
 
+import Nicholas.Grizz;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
@@ -15,6 +16,7 @@ import static org.lwjgl.opengl.GL30.*;
 
 
 public class Pan {
+    static Pan Instance;
     boolean checkKaki = true;
     boolean angkatKiri= false;
     boolean hadapDepan = true;
@@ -48,8 +50,9 @@ public class Pan {
     ArrayList<Object3d> objectPointsControl = new ArrayList<>();
     ArrayList<Object3d> objectsRectangle = new ArrayList<>();
     ArrayList<Float> xyNow = new ArrayList<>();
-
-
+    private boolean dekat = false;
+    private double counterLean = 0;
+    private int counterLompat = 0;
 
     public void init(){
         GL.createCapabilities();
@@ -107,7 +110,7 @@ public class Pan {
                 )
         ), new Vector4f(0.5f,0.5f,0.5f,1.0f), // ini untuk warna object segitiganya
                 0.0f,0.0f,0.0f,
-                0.5f,0.55f,0.5f, 3
+                0.5f,0.55f,0.5f, 9
         ));
         listSphere.get(0).getChildObject().get(1).scaleObject(0.33f, 0.33f, 0.33f);
         listSphere.get(0).getChildObject().get(1).rotateObject((float) Math.toRadians(180f), 0f, 0f, 1f);
@@ -255,6 +258,8 @@ public class Pan {
         listSphere.get(0).getChildObject().get(3).getChildObject().get(0).rotateObject((float) Math.toRadians(180f), 1f, 0f, 0f);
         listSphere.get(0).getChildObject().get(3).getChildObject().get(0).translateObject(0.141f, -0.47f, 0.05f);
 
+
+        //tangan kanan
         listSphere.get(0).getChildObject().add(new Sphere(Arrays.asList(
             new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                 new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
@@ -275,6 +280,8 @@ public class Pan {
         listSphere.get(0).getChildObject().get(5).rotateObject((float) Math.toRadians(20f), 0.0f, 0.0f,1.0f);
         listSphere.get(0).getChildObject().get(5).translateObject(0.25f, 0.05f,0f);
 
+
+        //tangan kiri
         listSphere.get(0).getChildObject().add(new Sphere(Arrays.asList(
                 new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                 new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
@@ -806,47 +813,47 @@ public class Pan {
             }
 
 
-            if (this.degTanganKiri < 60 && checkTanganKiri) {
-                listSphere.get(0).getChildObject().get(6).translateObject(tmpTanganKiri.x * -1, tmpTanganKiri.y * -1, tmpTanganKiri.z * -1);
-                listSphere.get(0).getChildObject().get(6).rotateObject((float) Math.toRadians(-0.5), .0f, 0.0f, 1.0f);
-                listSphere.get(0).getChildObject().get(6).translateObject(tmpTanganKiri.x, tmpTanganKiri.y, tmpTanganKiri.z);
-                this.degTanganKiri++;
-            }
-            if (this.degTanganKiri > -60 && !checkTanganKiri) {
-                listSphere.get(0).getChildObject().get(6).translateObject(tmpTanganKiri.x * -1, tmpTanganKiri.y * -1, tmpTanganKiri.z * -1);
-                listSphere.get(0).getChildObject().get(6).rotateObject((float) Math.toRadians(0.5), 0.0f, 0.0f, 1.0f);
-                listSphere.get(0).getChildObject().get(6).translateObject(tmpTanganKiri.x, tmpTanganKiri.y, tmpTanganKiri.z);
-                this.degTanganKiri--;
-            }
-            if (this.degTanganKiri >= 60) {
-                this.degTanganKiri = 60;
-                this.checkTanganKiri = false;
-            }
-            if (this.degTanganKiri <= -60) {
-                this.degTanganKiri = -60;
-                this.checkTanganKiri = true;
-            }
-
-            if (this.degTanganKanan < 60 && checkTanganKanan) {
-                listSphere.get(0).getChildObject().get(5).translateObject(tmpTanganKanan.x * -1, tmpTanganKanan.y * -1, tmpTanganKanan.z * -1);
-                listSphere.get(0).getChildObject().get(5).rotateObject((float) Math.toRadians(0.5), .0f, 0.0f, 1.0f);
-                listSphere.get(0).getChildObject().get(5).translateObject(tmpTanganKanan.x, tmpTanganKanan.y, tmpTanganKanan.z);
-                this.degTanganKanan++;
-            }
-            if (this.degTanganKanan > -60 && !checkTanganKanan) {
-                listSphere.get(0).getChildObject().get(5).translateObject(tmpTanganKanan.x * -1, tmpTanganKanan.y * -1, tmpTanganKanan.z * -1);
-                listSphere.get(0).getChildObject().get(5).rotateObject((float) Math.toRadians(-0.5), 0.0f, 0.0f, 1.0f);
-                listSphere.get(0).getChildObject().get(5).translateObject(tmpTanganKanan.x, tmpTanganKanan.y, tmpTanganKanan.z);
-                this.degTanganKanan--;
-            }
-            if (this.degTanganKanan >= 60) {
-                this.degTanganKanan = 60;
-                this.checkTanganKanan = false;
-            }
-            if (this.degTanganKanan <= -60) {
-                this.degTanganKanan = -60;
-                this.checkTanganKanan = true;
-            }
+//            if (this.degTanganKiri < 60 && checkTanganKiri) {
+//                listSphere.get(0).getChildObject().get(6).translateObject(tmpTanganKiri.x * -1, tmpTanganKiri.y * -1, tmpTanganKiri.z * -1);
+//                listSphere.get(0).getChildObject().get(6).rotateObject((float) Math.toRadians(-0.5), .0f, 0.0f, 1.0f);
+//                listSphere.get(0).getChildObject().get(6).translateObject(tmpTanganKiri.x, tmpTanganKiri.y, tmpTanganKiri.z);
+//                this.degTanganKiri++;
+//            }
+//            if (this.degTanganKiri > -60 && !checkTanganKiri) {
+//                listSphere.get(0).getChildObject().get(6).translateObject(tmpTanganKiri.x * -1, tmpTanganKiri.y * -1, tmpTanganKiri.z * -1);
+//                listSphere.get(0).getChildObject().get(6).rotateObject((float) Math.toRadians(0.5), 0.0f, 0.0f, 1.0f);
+//                listSphere.get(0).getChildObject().get(6).translateObject(tmpTanganKiri.x, tmpTanganKiri.y, tmpTanganKiri.z);
+//                this.degTanganKiri--;
+//            }
+//            if (this.degTanganKiri >= 60) {
+//                this.degTanganKiri = 60;
+//                this.checkTanganKiri = false;
+//            }
+//            if (this.degTanganKiri <= -60) {
+//                this.degTanganKiri = -60;
+//                this.checkTanganKiri = true;
+//            }
+//
+//            if (this.degTanganKanan < 60 && checkTanganKanan) {
+//                listSphere.get(0).getChildObject().get(5).translateObject(tmpTanganKanan.x * -1, tmpTanganKanan.y * -1, tmpTanganKanan.z * -1);
+//                listSphere.get(0).getChildObject().get(5).rotateObject((float) Math.toRadians(0.5), .0f, 0.0f, 1.0f);
+//                listSphere.get(0).getChildObject().get(5).translateObject(tmpTanganKanan.x, tmpTanganKanan.y, tmpTanganKanan.z);
+//                this.degTanganKanan++;
+//            }
+//            if (this.degTanganKanan > -60 && !checkTanganKanan) {
+//                listSphere.get(0).getChildObject().get(5).translateObject(tmpTanganKanan.x * -1, tmpTanganKanan.y * -1, tmpTanganKanan.z * -1);
+//                listSphere.get(0).getChildObject().get(5).rotateObject((float) Math.toRadians(-0.5), 0.0f, 0.0f, 1.0f);
+//                listSphere.get(0).getChildObject().get(5).translateObject(tmpTanganKanan.x, tmpTanganKanan.y, tmpTanganKanan.z);
+//                this.degTanganKanan--;
+//            }
+//            if (this.degTanganKanan >= 60) {
+//                this.degTanganKanan = 60;
+//                this.checkTanganKanan = false;
+//            }
+//            if (this.degTanganKanan <= -60) {
+//                this.degTanganKanan = -60;
+//                this.checkTanganKanan = true;
+//            }
 
 
             if (modeDuduk) {
@@ -895,9 +902,99 @@ public class Pan {
                 }
 
             }
-            listSphere.get(0).translateObject(0.004f, 0f, 0f);
+            listSphere.get(0).translateObject(0.004f, 0f, -0.0025f);
         }
 
+    }
+
+
+
+    public boolean modeJalan(Grizz grizz){
+
+        double jarak = calcDistance(grizz.getPosition().x, grizz.getPosition().y,
+                listSphere.get(0).updateCenterPoint().x, listSphere.get(0).updateCenterPoint().y);
+
+        if (!dekat){
+            if (jarak > 1.7) {
+                this.jalan();
+            }
+            if (jarak <= 1.7){
+                dekat = true;
+            }
+        }
+
+        if (dekat){
+            Vector3f tmpTanganKanan = listSphere.get(0).getChildObject().get(10).updateCenterPoint();
+            Vector3f tmpTanganKiri = listSphere.get(0).getChildObject().get(11).updateCenterPoint();
+            Vector3f tmp = listSphere.get(0).getChildObject().get(3).updateCenterPoint();
+            Vector3f tmpKepala = listSphere.get(0).getChildObject().get(1).updateCenterPoint();
+            Vector3f tmp2 = listSphere.get(0).getChildObject().get(4).updateCenterPoint();
+
+            if (counterLompat < 380){
+                listSphere.get(0).translateObject(0.002f, 0.0015f, 0f);
+                counterLompat++;
+            }
+
+            if (counterLean <= 180) {
+                listSphere.get(0).translateExcept(-0.0005f, 0.00025f,0f);
+                listSphere.get(0).translateObject(tmp.x * -1, tmp.y * -1, tmp.z * -1);
+                listSphere.get(0).rotateExcept((float) Math.toRadians(-0.25f), 0f, 0f, 1f);
+                counterLean += 0.5;
+
+                listSphere.get(0).translateObject(tmp.x, tmp.y, tmp.z);
+
+                listSphere.get(0).getChildObject().get(3).translateObject(tmp2.x * -1, tmp2.y * -1, tmp2.z * -1);
+                listSphere.get(0).getChildObject().get(3).rotateObject((float) Math.toRadians(0.063), 0.0f, 0.0f, 1.0f);
+                listSphere.get(0).getChildObject().get(3).translateObject(tmp2.x, tmp2.y, tmp2.z);
+
+                listSphere.get(0).getChildObject().get(4).translateObject(tmp.x * -1, tmp.y * -1, tmp.z * -1);
+                listSphere.get(0).getChildObject().get(4).rotateObject((float) Math.toRadians(-0.063), 0.0f, 0.0f, 1.0f);
+                listSphere.get(0).getChildObject().get(4).translateObject(tmp.x, tmp.y, tmp.z);
+
+            }
+            if (this.deg < 120) {
+                listSphere.get(0).getChildObject().get(1).translateObject(tmpKepala.x * -1, tmpKepala.y * -1, tmpKepala.z * -1);
+                listSphere.get(0).getChildObject().get(1).rotateObject((float) Math.toRadians(0.75), 0.0f, 0.0f, 1.0f);
+                listSphere.get(0).getChildObject().get(1).translateObject(tmpKepala.x, tmpKepala.y, tmpKepala.z);
+
+                listSphere.get(0).getChildObject().get(7).translateObject(tmpKepala.x * -1, tmpKepala.y * -1, tmpKepala.z * -1);
+                listSphere.get(0).getChildObject().get(7).rotateObject((float) Math.toRadians(0.75), 0.0f, 0.0f, 1.0f);
+                listSphere.get(0).getChildObject().get(7).translateObject(tmpKepala.x, tmpKepala.y, tmpKepala.z);
+
+                listSphere.get(0).getChildObject().get(8).translateObject(tmpKepala.x * -1, tmpKepala.y * -1, tmpKepala.z * -1);
+                listSphere.get(0).getChildObject().get(8).rotateObject((float) Math.toRadians(0.75), 0.0f, 0.0f, 1.0f);
+                listSphere.get(0).getChildObject().get(8).translateObject(tmpKepala.x, tmpKepala.y, tmpKepala.z);
+
+                listSphere.get(0).getChildObject().get(9).translateObject(tmpKepala.x * -1, tmpKepala.y * -1, tmpKepala.z * -1);
+                listSphere.get(0).getChildObject().get(9).rotateObject((float) Math.toRadians(0.75), 0.0f, 0.0f, 1.0f);
+                listSphere.get(0).getChildObject().get(9).translateObject(tmpKepala.x, tmpKepala.y, tmpKepala.z);
+                
+                this.deg++;
+            }
+            
+            if (this.degTanganKanan < 180) {
+                listSphere.get(0).getChildObject().get(5).translateObject(tmpTanganKanan.x * -1, tmpTanganKanan.y * -1, tmpTanganKanan.z * -1);
+                listSphere.get(0).getChildObject().get(5).rotateObject((float) Math.toRadians(-0.1), 1.0f, 0.0f, 0.0f);
+                listSphere.get(0).getChildObject().get(5).rotateObject((float) Math.toRadians(0.5), 0.0f, 0.0f, 1.0f);
+                listSphere.get(0).getChildObject().get(5).translateObject(tmpTanganKanan.x, tmpTanganKanan.y, tmpTanganKanan.z);
+                this.degTanganKanan++;
+            }
+
+
+            if (this.degTanganKiri < 180) {
+                listSphere.get(0).getChildObject().get(6).translateObject(tmpTanganKiri.x * -1, tmpTanganKiri.y * -1, tmpTanganKiri.z * -1);
+                listSphere.get(0).getChildObject().get(6).rotateObject((float) Math.toRadians(0.1), 1.0f, 0.0f, 0.0f);
+                listSphere.get(0).getChildObject().get(6).rotateObject((float) Math.toRadians(0.5), 0.0f, 0.0f, 1.0f);
+                listSphere.get(0).getChildObject().get(6).translateObject(tmpTanganKiri.x, tmpTanganKiri.y, tmpTanganKiri.z);
+                this.degTanganKiri++;
+            }
+
+        }
+
+
+
+
+        return true;
     }
 
     public double factorial(int n){
@@ -947,92 +1044,4 @@ public class Pan {
         double hasil = Math.sqrt(Math.pow((x2-x1), 2) + Math.pow((y2-y1), 2));
         return hasil;
     }
-
-//    public void input(){
-//
-//
-//        if(window.getMouseInput().isLeftButtonPressed()){
-////            System.out.println("grab" + this.grab);
-////            System.out.println();
-////            System.out.println("press2:" + window.getMouseInput().isLeftButtonPressed());
-////            System.out.println("release2:" + window.getMouseInput().isLeftButtonReleased());
-////            System.out.println();
-//            this.overlap = false;
-//            Vector2f pos  = window.getMouseInput().getCurrentPos();
-////            System.out.println("x: " + pos.x + "y: " + pos.y);
-//
-//
-//            // buat normalisasi supaya titik 0,0 ditengah, kalau tidak pakai ini, titik 0,0 di kiri atas
-//            pos.x = (pos.x - (window.getWidth())/2.0f) / (window.getWidth()/2.0f);
-//            pos.y = (pos.y - (window.getWidth())/2.0f) / (-window.getWidth()/2.0f);
-////            System.out.println("x: " + pos.x + "y: " + pos.y);
-//
-//
-//
-//                //karena kecepatan
-//                if ((!(pos.x > 1 || pos.x < -0.97) && !(pos.y > 0.97 || pos.y < -1))) {
-////                    System.out.println("x: " + pos.x + "y: " + pos.y);
-//                    if (objects.isEmpty()) {
-//                        this.overlap = false;
-//                    } else {
-//                        if (this.grab){
-//                            this.overlap = true;
-//                            objects.get(this.counter).reCreate(pos.x, pos.y);
-//                            objectPointsControl.get(0).setVertices(this.counter, new Vector3f(objects.get(this.counter).getX(), objects.get(this.counter).getY(), 0));
-////                            bezier(objects);
-//                        }else {
-//                            this.counter = 0;
-//                            for (Circle object : objects) {
-//
-//                                double res = calcDistance(object.getX(), object.getY(), pos.x, pos.y);
-//                                if (res < 0.1) {
-//                                    this.grab = true;
-//                                }
-//                                if (res < 0.3) {
-//                                    this.overlap = true;
-//
-//                                    break;
-//                                }
-//
-//                                this.counter += 1;
-//                            }
-//                        }
-//                    }
-//
-//
-//                    if (!(this.overlap)) {
-//                        objectPointsControl.get(0).addVertices(new Vector3f(pos.x, pos.y, 0));
-//                        objects.add(new Circle(
-//                                Arrays.asList(
-//                                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//                                ),
-//                                new ArrayList<>(),
-//                                new Vector4f(1f, 0f, 0f, 1.0f),
-//                                (float) pos.x, (float) pos.y, 0.1f
-//
-//                        ));
-////                        untuk bezier
-////                        bezier(objects);
-//                    }
-//
-//
-//                }
-//
-//
-//
-//
-//        }
-//        if (window.getMouseInput().isLeftButtonReleased()){
-////            System.out.println("\nreleased");
-//            this.grab = false;
-//        }
-////        if (window.getMouseInput().isLeftButtonPressed() && !window.getMouseInput().isLeftButtonReleased()){
-////
-////        }
-//    }
-
-
-
-
 }

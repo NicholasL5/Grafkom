@@ -248,7 +248,6 @@ public class Object3d extends ShaderProgram{
 
         model = new Matrix4f().translate(offsetX, offsetY, offsetZ).mul(new Matrix4f(model));
         updateCenterPoint();
-//        System.out.println(offsetX);
         for(Object3d child:childObject){
             child.translateObject(offsetX, offsetY, offsetZ);
         }

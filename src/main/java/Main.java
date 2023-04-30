@@ -1127,15 +1127,19 @@ public class Main {
         }
 
         if (window.isKeyPressed(GLFW_KEY_L)) {
-            grizz.modeJalan();
+            boolean phase1 = grizz.modeJalan();
+            if (phase1){
+                boolean phase2 = pan.modeJalan(grizz);
+            }
         }
-        if (window.isKeyPressed(GLFW_KEY_K)) {
-            grizz.jalan();
-            pan.jalan();
-            ice.jalan();
+        if (window.isKeyPressed(GLFW_KEY_MINUS)) {
+            pan.modeJalan(grizz);
+
         }
+
+
         if (window.isKeyPressed(GLFW_KEY_K)) {
-            grizz.jalan();
+//            grizz.jalan();
             pan.jalan();
             ice.jalan();
 //            camera.moveLeft(0.006f);
@@ -1213,6 +1217,11 @@ public class Main {
             pan.hadapKiri();
         }
 
+        if (window.isKeyPressed(GLFW_KEY_COMMA)){
+            grizz.putar();
+
+        }
+
         if (window.isKeyPressed(GLFW_KEY_8)){
             if(!listBezier.get(0).getFlag2()) {
                 listBezier.get(0).setFlag2();
@@ -1224,13 +1233,14 @@ public class Main {
             pan.GelengKiri();
         }
 
+
         if (window.isKeyPressed(GLFW_KEY_6)){
             ice.GelengKiri();
             pan.GelengKanan();
         }
 
         if(window.isKeyPressed(GLFW_KEY_Z)){
-            grizz.hadapKanan();
+//            grizz.hadapKanan();
             pan.hadapKanan();
             ice.hadapKanan();
 
@@ -1245,7 +1255,7 @@ public class Main {
 
 
         if (window.isKeyPressed(GLFW_KEY_F)){
-            ice.putarZ();
+            grizz.hadapKiri();
         }
     }
 

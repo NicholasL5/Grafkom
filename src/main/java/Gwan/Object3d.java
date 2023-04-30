@@ -194,6 +194,38 @@ public class Object3d extends ShaderProgram{
         vertices.set(index, newVector);
         setupVAOVBO();
     }
+    public void rotateExcept(
+            Float degree, Float offsetX, Float offsetY, Float offsetZ){
+
+        model = new Matrix4f().rotate(degree, offsetX, offsetY, offsetZ).mul(new Matrix4f(model));
+        updateCenterPoint();
+        for (int i = 0; i < childObject.size(); i++) {
+            if (i == 3 || i ==4){
+                continue;
+            }else{
+                childObject.get(i).rotateObject(degree, offsetX, offsetY, offsetZ);
+            }
+
+        }
+
+
+    }
+
+    public void translateExcept(
+            Float offsetX, Float offsetY, Float offsetZ){
+
+        model = new Matrix4f().translate(offsetX, offsetY, offsetZ).mul(new Matrix4f(model));
+        updateCenterPoint();
+        for (int i = 0; i < childObject.size(); i++) {
+            if (i == 3 || i == 4){
+                continue;
+            }else{
+                childObject.get(i).translateObject(offsetX, offsetY, offsetZ);
+            }
+
+        }
+
+    }
 
     public Matrix4f getModel() {
         return model;
@@ -218,7 +250,6 @@ public class Object3d extends ShaderProgram{
     public Float translateObject(Float offsetX, Float offsetY, Float offsetZ){
 
         model = new Matrix4f().translate(offsetX, offsetY, offsetZ).mul(new Matrix4f(model));
-        System.out.println(offsetX);
         for(Object3d child:childObject){
             child.translateObject(offsetX, offsetY, offsetZ);
         }

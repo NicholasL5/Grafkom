@@ -525,7 +525,6 @@ public class Ice {
             for (int i = 0; i <= n; i++) {
                 double koefisien = combination(n, i);
                 float hasil = (float) (koefisien * (float) Math.pow(1 - t, n - i) * (float) Math.pow(t, i));
-//                System.out.println("cek: " + objects.get(i).getCenterx() + " " + objects.get(i).getCentery());
                 x += hasil * floats[i][0];
                 y += hasil * floats[i][1];
                 z += hasil * floats[i][2];
