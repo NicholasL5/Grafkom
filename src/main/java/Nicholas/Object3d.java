@@ -63,7 +63,7 @@ public class Object3d extends ShaderProgram{
     }
 
     public void setFlag2() {
-        this.flag2 = !this.flag2;
+        this.flag2 = false;
     }
 
     public Object3d(List<ShaderModuleData> shaderModuleDataList,

@@ -31,6 +31,7 @@ public class Main {
     Nicholas.Camera camera = new Nicholas.Camera();
     public ArrayList<Nicholas.Object3d>  listBezier = new ArrayList<>();
     private int tes;
+    boolean clicked;
 
     public static float[][] controlBerzier2 = {
             {-0.17f, 1.15f, 0f},
@@ -523,205 +524,205 @@ public class Main {
 
         //store
         //gedung1
-//        listObj.add(new Nicholas.Sphere(Arrays.asList(
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//        ), new ArrayList<>(
-//                List.of(
-//                        new Vector3f(-0.5f, 0.5f, 0.0f),
-//                        new Vector3f(-0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, 0.5f, 0.0f)
-//                )
-//        ), new Vector4f((float)149/255, (float)93/255, (float)78/255, 1.0f), // ini untuk warna object segitiganya
-//                0.0f, 0.0f, 0.0f,
-//                0.5f, 0.5f, 0.5f, 11
-//        ));
-//
-//        listObj.get(3).scaleObject(5f, 14f, 7f);
-//        listObj.get(3).rotateObject((float)Math.toRadians(180f), 0f, 1f,0f);
-//
-//        //kaca
-//        listObj.get(3).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//        ), new ArrayList<>(
-//                List.of(
-//                        new Vector3f(-0.5f, 0.5f, 0.0f),
-//                        new Vector3f(-0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, 0.5f, 0.0f)
-//                )
-//        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
-//                0.0f, 0.0f, 0.0f,
-//                0.5f, 0.5f, 0.5f, 11
-//        ));
-//
-//        listObj.get(3).getChildObject().get(0).scaleObject(1.5f, 2.5f, 0.1f);
-//        listObj.get(3).getChildObject().get(0).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
-//        listObj.get(3).getChildObject().get(0).translateObject(1.23f, 0f, 0.4f);
-//
-//        listObj.get(3).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//        ), new ArrayList<>(
-//                List.of(
-//                        new Vector3f(-0.5f, 0.5f, 0.0f),
-//                        new Vector3f(-0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, 0.5f, 0.0f)
-//                )
-//        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
-//                0.0f, 0.0f, 0.0f,
-//                0.5f, 0.5f, 0.5f, 11
-//        ));
-//
-//        listObj.get(3).getChildObject().get(1).scaleObject(1.5f, 2.5f, 0.1f);
-//        listObj.get(3).getChildObject().get(1).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
-//        listObj.get(3).getChildObject().get(1).translateObject(1.23f, 0f, -0.4f);
-//
-//        listObj.get(3).translateObject(-15f,0f,5f);
-//
-//        //gedung2
-//        listObj.add(new Nicholas.Sphere(Arrays.asList(
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//        ), new ArrayList<>(
-//                List.of(
-//                        new Vector3f(-0.5f, 0.5f, 0.0f),
-//                        new Vector3f(-0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, 0.5f, 0.0f)
-//                )
-//        ), new Vector4f((float)244/255, (float)184/255, (float)0/255, 1.0f), // ini untuk warna object segitiganya
-//                0.0f, 0.0f, 0.0f,
-//                0.5f, 0.5f, 0.5f, 11
-//        ));
-//
-//        listObj.get(4).scaleObject(5f, 9f, 7f);
-//        listObj.get(4).rotateObject((float)Math.toRadians(180f), 0f, 1f,0f);
-//
-//        //kaca
-//        listObj.get(4).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//        ), new ArrayList<>(
-//                List.of(
-//                        new Vector3f(-0.5f, 0.5f, 0.0f),
-//                        new Vector3f(-0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, 0.5f, 0.0f)
-//                )
-//        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
-//                0.0f, 0.0f, 0.0f,
-//                0.5f, 0.5f, 0.5f, 11
-//        ));
-//
-//        listObj.get(4).getChildObject().get(0).scaleObject(1.5f, 2.5f, 0.1f);
-//        listObj.get(4).getChildObject().get(0).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
-//        listObj.get(4).getChildObject().get(0).translateObject(1.23f, 0f, 0.4f);
-//
-//        listObj.get(4).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//        ), new ArrayList<>(
-//                List.of(
-//                        new Vector3f(-0.5f, 0.5f, 0.0f),
-//                        new Vector3f(-0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, 0.5f, 0.0f)
-//                )
-//        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
-//                0.0f, 0.0f, 0.0f,
-//                0.5f, 0.5f, 0.5f, 11
-//        ));
-//
-//        listObj.get(4).getChildObject().get(1).scaleObject(1.5f, 2.5f, 0.1f);
-//        listObj.get(4).getChildObject().get(1).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
-//        listObj.get(4).getChildObject().get(1).translateObject(1.23f, 0f, -0.4f);
-//
-//        listObj.get(4).translateObject(-15f,0f,1.5f);
-//
-//        //gedung3
-//        listObj.add(new Nicholas.Sphere(Arrays.asList(
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//        ), new ArrayList<>(
-//                List.of(
-//                        new Vector3f(-0.5f, 0.5f, 0.0f),
-//                        new Vector3f(-0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, 0.5f, 0.0f)
-//                )
-//        ), new Vector4f((float)106/255, (float)125/255, (float)142/255, 1.0f), // ini untuk warna object segitiganya
-//                0.0f, 0.0f, 0.0f,
-//                0.5f, 0.5f, 0.5f, 11
-//        ));
-//
-//        listObj.get(5).scaleObject(5f, 10f, 7f);
-//        listObj.get(5).rotateObject((float)Math.toRadians(180f), 0f, 1f,0f);
-//
-//        //kaca
-//        listObj.get(5).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//        ), new ArrayList<>(
-//                List.of(
-//                        new Vector3f(-0.5f, 0.5f, 0.0f),
-//                        new Vector3f(-0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, 0.5f, 0.0f)
-//                )
-//        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
-//                0.0f, 0.0f, 0.0f,
-//                0.5f, 0.5f, 0.5f, 11
-//        ));
-//
-//        listObj.get(5).getChildObject().get(0).scaleObject(1.5f, 2.5f, 0.1f);
-//        listObj.get(5).getChildObject().get(0).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
-//        listObj.get(5).getChildObject().get(0).translateObject(1.23f, 0f, 0.4f);
-//
-//        listObj.get(5).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//        ), new ArrayList<>(
-//                List.of(
-//                        new Vector3f(-0.5f, 0.5f, 0.0f),
-//                        new Vector3f(-0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, 0.5f, 0.0f)
-//                )
-//        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
-//                0.0f, 0.0f, 0.0f,
-//                0.5f, 0.5f, 0.5f, 11
-//        ));
-//
-//        listObj.get(5).getChildObject().get(1).scaleObject(1.5f, 2.5f, 0.1f);
-//        listObj.get(5).getChildObject().get(1).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
-//        listObj.get(5).getChildObject().get(1).translateObject(1.23f, 0f, -0.4f);
-//
-//        listObj.get(5).translateObject(-15f,0f,8.5f);
-//
-//        //jalan
-//        listObj.add(new Nicholas.Sphere(Arrays.asList(
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//        ), new ArrayList<>(
-//                List.of(
-//                        new Vector3f(-0.5f, 0.5f, 0.0f),
-//                        new Vector3f(-0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, -0.5f, 0.0f),
-//                        new Vector3f(0.5f, 0.5f, 0.0f)
-//                )
-//        ), new Vector4f((float)71/255, (float)72/255, (float)76/255, 1.0f), // ini untuk warna object segitiganya
-//                0.0f, 0.0f, 0.0f,
-//                0.5f, 0.5f, 0.5f, 11
-//        ));
-//
-//        listObj.get(6).scaleObject(5f, 0.2f, 21f);
-//        listObj.get(6).rotateObject((float)Math.toRadians(180f), 0f, 1f,0f);
-//
-//        listObj.get(6).translateObject(-12.5f,-0.5f,5f);
+        listObj.add(new Nicholas.Sphere(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(
+                List.of(
+                        new Vector3f(-0.5f, 0.5f, 0.0f),
+                        new Vector3f(-0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, 0.5f, 0.0f)
+                )
+        ), new Vector4f((float)149/255, (float)93/255, (float)78/255, 1.0f), // ini untuk warna object segitiganya
+                0.0f, 0.0f, 0.0f,
+                0.5f, 0.5f, 0.5f, 11
+        ));
+
+        listObj.get(3).scaleObject(5f, 14f, 7f);
+        listObj.get(3).rotateObject((float)Math.toRadians(180f), 0f, 1f,0f);
+
+        //kaca
+        listObj.get(3).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(
+                List.of(
+                        new Vector3f(-0.5f, 0.5f, 0.0f),
+                        new Vector3f(-0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, 0.5f, 0.0f)
+                )
+        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
+                0.0f, 0.0f, 0.0f,
+                0.5f, 0.5f, 0.5f, 11
+        ));
+
+        listObj.get(3).getChildObject().get(0).scaleObject(1.5f, 2.5f, 0.1f);
+        listObj.get(3).getChildObject().get(0).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
+        listObj.get(3).getChildObject().get(0).translateObject(1.23f, 0f, 0.4f);
+
+        listObj.get(3).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(
+                List.of(
+                        new Vector3f(-0.5f, 0.5f, 0.0f),
+                        new Vector3f(-0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, 0.5f, 0.0f)
+                )
+        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
+                0.0f, 0.0f, 0.0f,
+                0.5f, 0.5f, 0.5f, 11
+        ));
+
+        listObj.get(3).getChildObject().get(1).scaleObject(1.5f, 2.5f, 0.1f);
+        listObj.get(3).getChildObject().get(1).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
+        listObj.get(3).getChildObject().get(1).translateObject(1.23f, 0f, -0.4f);
+
+        listObj.get(3).translateObject(-15f,0f,5f);
+
+        //gedung2
+        listObj.add(new Nicholas.Sphere(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(
+                List.of(
+                        new Vector3f(-0.5f, 0.5f, 0.0f),
+                        new Vector3f(-0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, 0.5f, 0.0f)
+                )
+        ), new Vector4f((float)244/255, (float)184/255, (float)0/255, 1.0f), // ini untuk warna object segitiganya
+                0.0f, 0.0f, 0.0f,
+                0.5f, 0.5f, 0.5f, 11
+        ));
+
+        listObj.get(4).scaleObject(5f, 9f, 7f);
+        listObj.get(4).rotateObject((float)Math.toRadians(180f), 0f, 1f,0f);
+
+        //kaca
+        listObj.get(4).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(
+                List.of(
+                        new Vector3f(-0.5f, 0.5f, 0.0f),
+                        new Vector3f(-0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, 0.5f, 0.0f)
+                )
+        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
+                0.0f, 0.0f, 0.0f,
+                0.5f, 0.5f, 0.5f, 11
+        ));
+
+        listObj.get(4).getChildObject().get(0).scaleObject(1.5f, 2.5f, 0.1f);
+        listObj.get(4).getChildObject().get(0).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
+        listObj.get(4).getChildObject().get(0).translateObject(1.23f, 0f, 0.4f);
+
+        listObj.get(4).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(
+                List.of(
+                        new Vector3f(-0.5f, 0.5f, 0.0f),
+                        new Vector3f(-0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, 0.5f, 0.0f)
+                )
+        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
+                0.0f, 0.0f, 0.0f,
+                0.5f, 0.5f, 0.5f, 11
+        ));
+
+        listObj.get(4).getChildObject().get(1).scaleObject(1.5f, 2.5f, 0.1f);
+        listObj.get(4).getChildObject().get(1).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
+        listObj.get(4).getChildObject().get(1).translateObject(1.23f, 0f, -0.4f);
+
+        listObj.get(4).translateObject(-15f,0f,1.5f);
+
+        //gedung3
+        listObj.add(new Nicholas.Sphere(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(
+                List.of(
+                        new Vector3f(-0.5f, 0.5f, 0.0f),
+                        new Vector3f(-0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, 0.5f, 0.0f)
+                )
+        ), new Vector4f((float)106/255, (float)125/255, (float)142/255, 1.0f), // ini untuk warna object segitiganya
+                0.0f, 0.0f, 0.0f,
+                0.5f, 0.5f, 0.5f, 11
+        ));
+
+        listObj.get(5).scaleObject(5f, 10f, 7f);
+        listObj.get(5).rotateObject((float)Math.toRadians(180f), 0f, 1f,0f);
+
+        //kaca
+        listObj.get(5).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(
+                List.of(
+                        new Vector3f(-0.5f, 0.5f, 0.0f),
+                        new Vector3f(-0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, 0.5f, 0.0f)
+                )
+        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
+                0.0f, 0.0f, 0.0f,
+                0.5f, 0.5f, 0.5f, 11
+        ));
+
+        listObj.get(5).getChildObject().get(0).scaleObject(1.5f, 2.5f, 0.1f);
+        listObj.get(5).getChildObject().get(0).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
+        listObj.get(5).getChildObject().get(0).translateObject(1.23f, 0f, 0.4f);
+
+        listObj.get(5).getChildObject().add(new Nicholas.Sphere(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(
+                List.of(
+                        new Vector3f(-0.5f, 0.5f, 0.0f),
+                        new Vector3f(-0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, 0.5f, 0.0f)
+                )
+        ), new Vector4f((float)145/255, (float)184/255, (float)219/255, 1.0f), // ini untuk warna object segitiganya
+                0.0f, 0.0f, 0.0f,
+                0.5f, 0.5f, 0.5f, 11
+        ));
+
+        listObj.get(5).getChildObject().get(1).scaleObject(1.5f, 2.5f, 0.1f);
+        listObj.get(5).getChildObject().get(1).rotateObject((float)Math.toRadians(270f), 0f, 1f,0f);
+        listObj.get(5).getChildObject().get(1).translateObject(1.23f, 0f, -0.4f);
+
+        listObj.get(5).translateObject(-15f,0f,8.5f);
+
+        //jalan
+        listObj.add(new Nicholas.Sphere(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(
+                List.of(
+                        new Vector3f(-0.5f, 0.5f, 0.0f),
+                        new Vector3f(-0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, -0.5f, 0.0f),
+                        new Vector3f(0.5f, 0.5f, 0.0f)
+                )
+        ), new Vector4f((float)71/255, (float)72/255, (float)76/255, 1.0f), // ini untuk warna object segitiganya
+                0.0f, 0.0f, 0.0f,
+                0.5f, 0.5f, 0.5f, 11
+        ));
+
+        listObj.get(6).scaleObject(5f, 0.2f, 21f);
+        listObj.get(6).rotateObject((float)Math.toRadians(180f), 0f, 1f,0f);
+
+        listObj.get(6).translateObject(-12.5f,-0.5f,5f);
 
         //pohon1
         tree.add(new Nicholas.Sphere(Arrays.asList(
@@ -1057,9 +1058,26 @@ public class Main {
 //        listBezier.get(0).scaleObject(0.1f,0.1f,0.1f);
 
 
-        listBezier.get(0).rotateObject((float)Math.toRadians(90f), 0f, 1f,0f);
-        listBezier.get(0).translateObject(-0.5f, -0.5f,-1.5f);
-        
+//        listBezier.get(0).rotateObject((float)Math.toRadians(90f), 0f, 1f,0f);
+//        listBezier.get(0).translateObject(-0.5f, -0.5f,-1.5f);
+//
+//        listObj.add(new Nicholas.Sphere(Arrays.asList(
+//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//        ), new ArrayList<>(
+//                List.of(
+//                        new Vector3f(-0.5f, 0.5f, 0.0f),
+//                        new Vector3f(-0.5f, -0.5f, 0.0f),
+//                        new Vector3f(0.5f, -0.5f, 0.0f),
+//                        new Vector3f(0.5f, 0.5f, 0.0f)
+//                )
+//        ), new Vector4f((float)96/255, (float)22/255, (float)22/255, 1.0f), // ini untuk warna object segitiganya
+//                0.0f, 0.0f, 0.0f,
+//                0.5f, 0.5f, 0.5f, 1
+//        ));
+//        listObj.get(7).scaleObject(0.5f,0.5f,1f);
+//        listObj.get(7).translateObject(-0.4f, -0.2f,0f);
+
     }
 
     public void bezier(float[][] floats, int urutan) {
@@ -1128,13 +1146,18 @@ public class Main {
 
         if (window.isKeyPressed(GLFW_KEY_L)) {
             boolean phase1 = grizz.modeJalan();
+            boolean phase2 = false;
             if (phase1){
-                boolean phase2 = pan.modeJalan(grizz);
+                phase2 = pan.modeJalan(grizz);
+            }
+
+            if (phase2){
+                ice.modeJalan(grizz);
             }
         }
         if (window.isKeyPressed(GLFW_KEY_MINUS)) {
-            pan.modeJalan(grizz);
-
+//            pan.modeJalan(grizz);
+            grizz.turunKiri();
         }
 
 
@@ -1172,18 +1195,36 @@ public class Main {
             grizz.resetTangan();
         }
 
-        if (window.isKeyPressed(GLFW_KEY_R)){
-
-            ice.jalan();
-        }
+//        if (window.isKeyRelease(GLFW_KEY_R)){
+//
+//            grizz.jalan();
+//        }
         if (window.isKeyPressed(GLFW_KEY_T)){
             ice.kapak();
+//            grizz.gelengX();
         }
         if (window.isKeyPressed(GLFW_KEY_0)){
             grizz.reset();
             ice.reset();
             pan.reset();
         }
+        if (window.isKeyPressed(GLFW_KEY_B)){
+            grizz.jalan();
+            ice.listSphere.get(0).translateObject(0f, 0f, 0.01f);
+            pan.listSphere.get(0).translateObject(0f, 0f, 0.01f);
+            Vector3f vec = grizz.getPosition();
+            camera.setPosition(vec.x + 5, vec.y+ 1, vec.z+2);
+        }
+        if (window.isKeyPressed(GLFW_KEY_Y)){
+
+
+            ice.lepasKapak(grizz);
+//            grizz.gelengX();
+        }
+
+
+
+
 
         if (window.isKeyPressed(GLFW_KEY_C)) {
             camera.moveForward(0.05f);
@@ -1229,14 +1270,31 @@ public class Main {
         }
 
         if (window.isKeyPressed(GLFW_KEY_7)){
-            ice.GelengKanan();
-            pan.GelengKiri();
+            if(!clicked){
+                grizz.listSphere.get(0).translateObject(-14f, 0f, 0f);
+                pan.listSphere.get(0).translateObject(-14f, 0f, 0f);
+                ice.listSphere.get(0).translateObject(-14f, 0f, 0f);
+
+
+                grizz.hadapKiri();
+                pan.hadapKiri();
+                ice.hadapKiri();
+                camera.addRotation((float) 0f, (float) Math.toRadians(285f));
+                Vector3f vec = grizz.getPosition();
+                camera.setPosition(vec.x + 5, vec.y+ 1, vec.z+2);
+
+                clicked = true;
+            }
         }
 
 
         if (window.isKeyPressed(GLFW_KEY_6)){
-            ice.GelengKiri();
-            pan.GelengKanan();
+//            ice.GelengKiri();
+//            pan.GelengKanan();
+
+            pan.AngkatTangan();
+
+            ice.AngkatTangan();
         }
 
         if(window.isKeyPressed(GLFW_KEY_Z)){
@@ -1246,10 +1304,8 @@ public class Main {
 
         }
         if(window.isKeyPressed(GLFW_KEY_X)){
-            grizz.hadapKiri();
-            pan.hadapKiri();
-            ice.hadapKiri();
 
+            ice.putar();
         }
 
 

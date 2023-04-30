@@ -53,6 +53,7 @@ public class Pan {
     private boolean dekat = false;
     private double counterLean = 0;
     private int counterLompat = 0;
+    private boolean angkatTangan = false;
 
     public void init(){
         GL.createCapabilities();
@@ -401,8 +402,29 @@ public class Pan {
         listSphere.get(0).getChildObject().get(11).scaleObject(0.05f, 0.05f,0.05f);
         listSphere.get(0).getChildObject().get(11).translateObject(-0.2f,0.2f, 0.0f);
 
-        listSphere.get(0).translateObject(-0.8f, 0f, -1f);
-}
+//        listSphere.get(0).rotateObject((float) Math.toRadians(90f), 0f, 1f, 0f);
+//        listSphere.get(0).translateObject(-0.9f, 0f, -0f);
+
+//        listSphere.get(0).translateObject(-11.5f, 0f, 6f);
+        listSphere.get(0).translateObject(-0.7f, 0f,-0.6f);
+
+    }
+
+    public void AngkatTangan(){
+        Vector3f tmp = listSphere.get(0).getChildObject().get(10).updateCenterPoint();
+        Vector3f tmp2 = listSphere.get(0).getChildObject().get(11).updateCenterPoint();
+        if(!angkatTangan){
+            listSphere.get(0).getChildObject().get(5).translateObject(tmp2.x * -1, tmp2.y * -1, tmp2.z * -1);
+            listSphere.get(0).getChildObject().get(5).rotateObject((float) Math.toRadians(170), 0.0f, 0.0f, 1.0f);
+            listSphere.get(0).getChildObject().get(5).translateObject(tmp2.x, tmp2.y, tmp2.z);
+
+
+            listSphere.get(0).getChildObject().get(6).translateObject(tmp.x * -1, tmp.y * -1, tmp.z * -1);
+            listSphere.get(0).getChildObject().get(6).rotateObject((float) Math.toRadians(170), 0.0f, 0.0f, 1.0f);
+            listSphere.get(0).getChildObject().get(6).translateObject(tmp.x, tmp.y, tmp.z);
+            angkatTangan = true;
+        }
+    }
 
     public void bezier(ArrayList<Circle> obj){
         int n = obj.size() -1;
@@ -989,12 +1011,15 @@ public class Pan {
                 this.degTanganKiri++;
             }
 
+
+            return counterLompat == 380 && counterLean == 180.5;
+
         }
 
 
 
 
-        return true;
+        return false;
     }
 
     public double factorial(int n){
